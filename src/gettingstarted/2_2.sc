@@ -1,4 +1,5 @@
 def fib(n: Long): Long = {
+  @annotation.tailrec
   def _fib(step: Long, prev: Long, current: Long): Long = {
     if(step <= 2) current
     else _fib(step - 1, current, prev + current)
