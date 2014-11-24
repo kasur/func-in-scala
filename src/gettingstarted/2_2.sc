@@ -1,18 +1,27 @@
-def fib(n: Long): Long = {
-  @annotation.tailrec
-  def _fib(step: Long, prev: Long, current: Long): Long = {
-    if(step <= 2) current
-    else _fib(step - 1, current, prev + current)
+import scala.annotation.tailrec
+
+def isSorted[A](xs: Array[A], isOrdered: (A, A) => Boolean): Boolean = {
+
+  @tailrec
+  def _step(n: Int): Boolean = {
+    if(n - 1 < 0) true
+    else {
+      if( !isOrdered(xs(n - 1 ), xs(n)) ) false
+      else _step(n - 1)
+    }
   }
-  if(n == 1) 0
-  else _fib(n, 0, 1)
+
+  val len = xs.length
+  if(len <= 1) true
+  else {
+    _step(len - 1)
+  }
+
 }
 
-fib(1)
-fib(2)
-fib(3)
-fib(5)
-fib(7)
-fib(10)
-fib(80)
+val func = (_: Int) <= (_: Int)
+
+isSorted(Array(1,2,3,4,5,6,7), func )
+isSorted(Array(1,2,3,4,2,6,7), func )
+
 
