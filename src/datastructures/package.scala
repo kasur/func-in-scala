@@ -26,5 +26,13 @@ package object datastructures {
       }
     }
 
+    // Exercise 3_2
+    def tail[A](xs: List[A]): List[A] = {
+      xs match {
+        case Nil => throw new IllegalArgumentException
+        case Cons(_, ys) => ys
+      }
+    }
+
   }
 }

@@ -20,4 +20,7 @@ object EntryPoint extends App {
 
   println(s"result is $result")
 
+  val tail_1 = List.tail(cons)
+  println(s"Tail is $tail_1")
+
 }
