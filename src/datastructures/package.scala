@@ -1,3 +1,5 @@
+import scala.annotation.switch
+
 /**
  * @author erusak.
  */
@@ -32,6 +34,30 @@ package object datastructures {
         case Nil => throw new IllegalArgumentException
         case Cons(_, ys) => ys
       }
+    }
+
+    //Exercise 3_3
+    def setHead[A](xs: List[A], head: A): List[A] = {
+      xs match {
+        case Nil => throw new IllegalArgumentException
+        case Cons(_, tail) => Cons(head, tail)
+      }
+    }
+
+    // Exercise 3_4
+    def drop[A](xs: List[A], n: Int): List[A] = {
+
+      def doDrop(xs: List[A], step: Int): List[A] = {
+        (xs: @switch) match {
+          case Nil => Nil
+          case list @ Cons(_, _) if step == 0 => list
+          case Cons(_, tail) => doDrop(tail, step - 1)
+        }
+      }
+
+      if(xs == Nil) throw new IllegalArgumentException
+      else doDrop(xs, n)
+
     }
 
   }

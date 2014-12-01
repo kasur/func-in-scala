@@ -20,7 +20,16 @@ object EntryPoint extends App {
 
   println(s"result is $result")
 
+  // Exercise 3_2
   val tail_1 = List.tail(cons)
   println(s"Tail is $tail_1")
+
+  // Exercise 3_3
+  val headed = List.setHead(List(1,2,3,4), 7) //should be 7,2,3,4
+  println(headed == List(7,2,3,4))
+
+  // Exercise 3_4
+  val dropped = List.drop( List(1,2,3,4,5), 3)
+  println(dropped)
 
 }
