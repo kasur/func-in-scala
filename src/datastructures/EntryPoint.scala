@@ -32,4 +32,9 @@ object EntryPoint extends App {
   val dropped = List.drop( List(1,2,3,4,5), 3)
   println(dropped)
 
+  // Exercise 3_5
+  println(s"dropping (1,2,3,4,5) with _ > 0  => ${List.dropWhile(List(1,2,3,4,5), (_: Int) > 0)}")
+  println(s"dropping (1,2,3,4,5) with _ <= 3  => ${List.dropWhile(List(1,2,3,4,5), (_: Int) <= 3 )}")
+  println(s"dropping (1,2,3,4,5) with _ < 0  => ${List.dropWhile(List(1,2,3,4,5), (_: Int) < 0 )}")
+
 }

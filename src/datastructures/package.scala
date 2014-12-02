@@ -60,5 +60,14 @@ package object datastructures {
 
     }
 
+    //Exercise 3_5
+    def dropWhile[A](xs: List[A], p: A => Boolean): List[A] = {
+      xs match {
+        case Nil => Nil
+        case list @ Cons(head, _) if !p(head) => list
+        case Cons(head, tail) => dropWhile(tail, p)
+      }
+    }
+
   }
 }
