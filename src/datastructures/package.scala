@@ -1,4 +1,4 @@
-import scala.annotation.switch
+import scala.annotation.{tailrec, switch}
 
 /**
  * @author erusak.
@@ -67,6 +67,32 @@ package object datastructures {
         case list @ Cons(head, _) if !p(head) => list
         case Cons(head, tail) => dropWhile(tail, p)
       }
+    }
+
+    // Exercise 3_6
+    def init[A](xs: List[A]): List[A] = { //return all but last element
+      xs match {
+        case Cons(_, Nil) => Nil
+        case Cons(head, tail) => Cons(head, init(tail))
+      }
+    }
+
+    // Exercise 3_6 - more efficient without copying and stackoverflow
+    def initAnswer[A](xs: List[A]): List[A] = {
+      import scala.collection.mutable.ListBuffer
+      val buffer = new ListBuffer[A]
+
+      @tailrec
+      def go(xs: List[A]): List[A] = {
+        (xs: @switch) match {
+          case Nil => Nil
+          case Cons(_, Nil) => List(buffer.toList: _*)
+          case Cons(head, tail) => buffer += head; go(tail)
+        }
+      }
+
+      go(xs)
+
     }
 
   }
