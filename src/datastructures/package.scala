@@ -69,6 +69,11 @@ package object datastructures {
       }
     }
 
+    //type inference will allow not to specify p type
+    def dropWhileCurried[A](xs: List[A])(p: A => Boolean): List[A] = {
+      dropWhile(xs, p)
+    }
+
     // Exercise 3_6
     def init[A](xs: List[A]): List[A] = { //return all but last element
       xs match {

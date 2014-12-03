@@ -36,6 +36,7 @@ object EntryPoint extends App {
   println(s"dropping (1,2,3,4,5) with _ > 0  => ${List.dropWhile(List(1,2,3,4,5), (_: Int) > 0)}")
   println(s"dropping (1,2,3,4,5) with _ <= 3  => ${List.dropWhile(List(1,2,3,4,5), (_: Int) <= 3 )}")
   println(s"dropping (1,2,3,4,5) with _ < 0  => ${List.dropWhile(List(1,2,3,4,5), (_: Int) < 0 )}")
+  println(s"dropping (1,2,3,4,5) with _ <= 2  => ${List.dropWhileCurried(List(1,2,3,4,5))(_ <= 2)}")
 
   // Exercise 3_6
   println(s"returning (1,2,3,4,5) with the last dropped out ${List.init(List(1,2,3,4,5))}")
