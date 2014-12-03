@@ -10,14 +10,29 @@ package object datastructures {
   case class Cons[+A](head: A, tail: List[A]) extends List[A]
 
   object List {
+
+    def foldLeft[A,B](xs: List[A], z: B)(f: (A,B) => B): B = {
+      xs match {
+        case Nil => z
+        case Cons(head, tail) => f(head, foldLeft(tail, z)(f) )
+      }
+    }
+
     def sum(xs: List[Int]): Int = xs match {
       case Nil => 0
       case Cons(head, tail) => head + sum(tail)
     }
 
+    def sum2(xs: List[Int]) = {
+      foldLeft(xs, 0.0)(_ + _)
+    }
+
+    def product2(xs: List[Double]) = {
+      foldLeft(xs, 1.0)(_ * _)
+    }
+
     def product(xs: List[Double]): Double = xs match {
       case Nil => 1.0
-      case Cons(0.0, _) => 0.0
       case Cons(head, tail) => head * product(tail)
     }
 

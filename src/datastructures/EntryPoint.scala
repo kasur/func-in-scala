@@ -6,9 +6,12 @@ package datastructures
 object EntryPoint extends App {
 
   val cons = Cons(1, Cons(2, Cons(3, Nil)))
-  val consD = List(1.0, 2.0, 3.0)
-  println(List.sum(cons))
-  println(List.product(consD))
+  val consD = List(1.0, 2.0, 3.0, 4.0)
+  println(s"Sum of (1,2,3) is ${List.sum(cons)}")
+  println(s"Product of (1,2,3,4) is ${List.product(consD)}")
+
+  println(s"Sum of (1,2,3) is ${List.sum2(cons)}")
+  println(s"Product of (1,2,3,4) is ${List.product2(consD)}")
 
   val result = List(1,2,3,4,5,6,7) match {
     case Cons(x, Cons(2, Cons(4, _))) => x
