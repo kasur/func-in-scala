@@ -13,7 +13,8 @@ package object datastructures {
 
     def foldRight[A,B](xs: List[A], z: B)(f: (A,B) => B): B = {
       xs match {
-        case Nil => z
+        case Nil => z            // here we cannot for example terminate the calculation if we encounter 0.0 because f
+                                 // needs to evaluate its argument first (we will see how to use by name later on)
         case Cons(head, tail) => f(head, foldRight(tail, z)(f) )
       }
     }
