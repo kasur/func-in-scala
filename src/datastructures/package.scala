@@ -11,10 +11,10 @@ package object datastructures {
 
   object List {
 
-    def foldLeft[A,B](xs: List[A], z: B)(f: (A,B) => B): B = {
+    def foldRight[A,B](xs: List[A], z: B)(f: (A,B) => B): B = {
       xs match {
         case Nil => z
-        case Cons(head, tail) => f(head, foldLeft(tail, z)(f) )
+        case Cons(head, tail) => f(head, foldRight(tail, z)(f) )
       }
     }
 
@@ -24,11 +24,11 @@ package object datastructures {
     }
 
     def sum2(xs: List[Int]) = {
-      foldLeft(xs, 0.0)(_ + _)
+      foldRight(xs, 0.0)(_ + _)
     }
 
     def product2(xs: List[Double]) = {
-      foldLeft(xs, 1.0)(_ * _)
+      foldRight(xs, 1.0)(_ * _)
     }
 
     def product(xs: List[Double]): Double = xs match {
