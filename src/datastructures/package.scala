@@ -116,5 +116,13 @@ package object datastructures {
 
     }
 
+    // Exercise 3_9
+    def length[A](xs: List[A]): Int = {
+      foldRight(xs, 0) {
+        (_, acc) => acc + 1
+      }
+    }
+
   }
+
 }
