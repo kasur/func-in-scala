@@ -10,8 +10,14 @@ object EntryPoint extends App {
   println(s"Sum of (1,2,3) is ${List.sum(cons)}")
   println(s"Product of (1,2,3,4) is ${List.product(consD)}")
 
-  println(s"Sum of (1,2,3) is ${List.sum2(cons)}")
-  println(s"Product of (1,2,3,4) is ${List.product2(consD)}")
+  println(s"Sum of (1,2,3) with foldRight is ${List.sumFoldRight(cons)}")
+  println(s"Product of (1,2,3,4) with foldRight is ${List.productFoldRight(consD)}")
+
+  // Exercise 3_11
+  println(s"Sum of (1,2,3) with foldLeft is ${List.sumFoldLeft(cons)}")
+  println(s"Product of (1,2,3,4) with foldLeft is ${List.productFoldLeft(consD)}")
+  println(s"Length of (1,2,3,4) with foldLeft is ${List.lengthFoldLeft(consD)}")
+
 
   val result = List(1,2,3,4,5,6,7) match {
     case Cons(x, Cons(2, Cons(4, _))) => x

@@ -19,17 +19,38 @@ package object datastructures {
       }
     }
 
+    def foldLeft[A, B](xs: List[A], z: B)(f: (A,B) => B): B = {
+      @tailrec
+      def go(xs: List[A], acc: B): B = xs match {
+        case Nil => acc
+        case Cons(h, tail) => go(tail, f(h, acc))
+      }
+      
+      go(xs,z)
+      
+    }
+    
     def sum(xs: List[Int]): Int = xs match {
       case Nil => 0
       case Cons(head, tail) => head + sum(tail)
     }
 
-    def sum2(xs: List[Int]) = {
+    def sumFoldRight(xs: List[Int]) = {
       foldRight(xs, 0.0)(_ + _)
     }
 
-    def product2(xs: List[Double]) = {
+    // Exercise 3_11
+    def sumFoldLeft(xs: List[Int]) = {
+      foldLeft(xs, 0.0)(_ + _)
+    }
+
+    def productFoldRight(xs: List[Double]) = {
       foldRight(xs, 1.0)(_ * _)
+    }
+
+    // Exercise 3_11
+    def productFoldLeft(xs: List[Double]) = {
+      foldLeft(xs, 1.0)(_ * _)
     }
 
     def product(xs: List[Double]): Double = xs match {
@@ -117,8 +138,15 @@ package object datastructures {
     }
 
     // Exercise 3_9
-    def length[A](xs: List[A]): Int = {
+    def lengthFoldRight[A](xs: List[A]): Int = {
       foldRight(xs, 0) {
+        (_, acc) => acc + 1
+      }
+    }
+
+    // Exercise 3_11
+    def lengthFoldLeft[A](xs: List[A]): Int = {
+      foldLeft(xs, 0) {
         (_, acc) => acc + 1
       }
     }
