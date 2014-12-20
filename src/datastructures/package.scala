@@ -1,4 +1,5 @@
 import scala.annotation.{tailrec, switch}
+import scala.collection.immutable
 
 /**
  * @author erusak.
@@ -85,7 +86,7 @@ package object datastructures {
     def drop[A](xs: List[A], n: Int): List[A] = {
 
       def doDrop(xs: List[A], step: Int): List[A] = {
-        (xs: @switch) match {
+        xs match {
           case Nil => Nil
           case list @ Cons(_, _) if step == 0 => list
           case Cons(_, tail) => doDrop(tail, step - 1)
@@ -114,6 +115,7 @@ package object datastructures {
     // Exercise 3_6
     def init[A](xs: List[A]): List[A] = { //return all but last element
       xs match {
+        case Nil => Nil
         case Cons(_, Nil) => Nil
         case Cons(head, tail) => Cons(head, init(tail))
       }
@@ -126,7 +128,7 @@ package object datastructures {
 
       @tailrec
       def go(xs: List[A]): List[A] = {
-        (xs: @switch) match {
+        xs match {
           case Nil => Nil
           case Cons(_, Nil) => List(buffer.toList: _*)
           case Cons(head, tail) => buffer += head; go(tail)
@@ -149,6 +151,41 @@ package object datastructures {
       foldLeft(xs, 0) {
         (_, acc) => acc + 1
       }
+    }
+
+    // Exercise 3_12
+    def reverseTailRec[A](xs: List[A]): List[A] = {
+      import scala.collection.mutable.ListBuffer
+      val buffer = new ListBuffer[A]
+
+      @tailrec
+      def go(xs: List[A]): List[A] = xs match {
+        case Nil => List(buffer.toList: _*)
+        case Cons(head, tail) => head +=: buffer; go(tail);
+      }
+
+      go(xs)
+
+    }
+
+    // Exercise 3_12 using fold
+    def reverseWithFold[A](xs: List[A]): List[A] = {
+      import scala.collection.mutable.ListBuffer
+      val buffer = new ListBuffer[A]
+
+      def func(x: A, buf: ListBuffer[A]) = x +=: buf
+
+      foldLeft(xs, buffer)(func)
+
+      List(buffer.toList: _*)
+
+    }
+
+    // Exercise 3_12 dumb me
+    def reverse[A](xs: List[A]): List[A] = {
+
+      foldLeft(xs, Nil: List[A])( (x, acc) => Cons(x, acc) )
+
     }
 
   }

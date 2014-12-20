@@ -54,4 +54,9 @@ object EntryPoint extends App {
   println(s"returning (1,2,3,4,5) with the last dropped out ${List.initAnswer(List(1,2,3,4,5))}")
   println(s"returning (1) with the last dropped out ${List.initAnswer(List(1))}")
 
+
+  //Exercise 3_12
+  println(s"returning reversed for (1,2,3,4,5,7,6) using tailrec ${List.reverseTailRec(List(1,2,3,4,7,6))}")
+  println(s"returning reversed for (1,2,3,4,5,7,6) using foldLeft ${List.reverse(List(1,2,3,4,7,6))}")
+  println(s"returning reversed for (1,2,3,4,5,7,6) smart ${List.reverse(List(1,2,3,4,7,6))}")
 }
