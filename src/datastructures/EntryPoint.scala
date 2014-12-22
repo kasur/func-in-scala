@@ -59,4 +59,8 @@ object EntryPoint extends App {
   println(s"returning reversed for (1,2,3,4,5,7,6) using tailrec ${List.reverseTailRec(List(1,2,3,4,7,6))}")
   println(s"returning reversed for (1,2,3,4,5,7,6) using foldLeft ${List.reverse(List(1,2,3,4,7,6))}")
   println(s"returning reversed for (1,2,3,4,5,7,6) smart ${List.reverse(List(1,2,3,4,7,6))}")
+
+  //Exercise 3_14
+  println(s"returning append 8 to (1,2,3,4,5,7,6) using foldL ${List.appendFL(List(1,2,3,4,7,6), List(8))}")
+  println(s"returning append 8 to (1,2,3,4,5,7,6) using foldR ${List.appendFR(List(1,2,3,4,7,6), List(8))}")
 }

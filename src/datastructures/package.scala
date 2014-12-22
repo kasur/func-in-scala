@@ -183,9 +183,17 @@ package object datastructures {
 
     // Exercise 3_12 dumb me
     def reverse[A](xs: List[A]): List[A] = {
-
       foldLeft(xs, Nil: List[A])( (x, acc) => Cons(x, acc) )
+    }
 
+    // Exercise 3_14 : append with either foldL
+    def appendFL[A](xs: List[A], xz: List[A]): List[A] = {
+      foldLeft(reverse(xs), xz)(Cons(_,_))
+    }
+
+    // Exercise 3_14 : append with either foldR
+    def appendFR[A](xs: List[A], xz: List[A]): List[A] = {
+      foldRight(xs, xz)(Cons(_,_))
     }
 
   }
