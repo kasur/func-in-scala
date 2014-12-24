@@ -217,6 +217,9 @@ package object datastructures {
       foldRight(xs, Nil: List[String]) { (h,t) => Cons(h.toString, t)}
     }
 
+    // Exercise 3_18 map implementation
+    def map[A,B](xs: List[A])(f: A => B): List[B] = foldRight(xs, Nil: List[B]) { (h,t) => Cons(f(h), t) }
+
   }
 
 }
