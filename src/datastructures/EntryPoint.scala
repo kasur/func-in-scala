@@ -61,6 +61,14 @@ object EntryPoint extends App {
   println(s"returning reversed for (1,2,3,4,5,7,6) smart ${List.reverse(List(1,2,3,4,7,6))}")
 
   //Exercise 3_14
-  println(s"returning append 8 to (1,2,3,4,5,7,6) using foldL ${List.appendFL(List(1,2,3,4,7,6), List(8))}")
-  println(s"returning append 8 to (1,2,3,4,5,7,6) using foldR ${List.appendFR(List(1,2,3,4,7,6), List(8))}")
+  println(s"returning append (8,7) to (1,2,3,4,7,6) using foldL ${List.appendFL(List(1,2,3,4,7,6), List(8,7))}")
+  println(s"returning append (8,7) to (1,2,3,4,7,6) using foldR ${List.appendFR(List(1,2,3,4,7,6), List(8,7))}")
+
+  //Exercise 3_15
+  println(s"returning concat of ((1,2),(3),(4,7,6)) using foldL ${List.concat(List(List(1,2),List(3),List(4,7,6)))}")
+
+  //Exercise 3_16
+  println(s"incr list (1,0,2,3,4,5,10) by 1 ${List.incrList(List(1,0,2,3,4,5,10))}")
+  //Exercise 3_16 with foldR
+  println(s"incr list (1,0,2,3,4,5,10) by 1 with foldR ${List.incrListWithFoldR(List(1,0,2,3,4,5,10))}")
 }

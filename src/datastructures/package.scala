@@ -196,6 +196,22 @@ package object datastructures {
       foldRight(xs, xz)(Cons(_,_))
     }
 
+    // Exercise 3_15: concat list of lists into a single list
+    def concat[A](xs: List[List[A]]): List[A] = {
+      foldRight(xs, Nil: List[A]) ( appendFR )
+    }
+
+    // Exercise 3_16
+    def incrList(xs: List[Int]): List[Int] = xs match {
+      case Nil => Nil
+      case Cons(head, tail) => Cons(head + 1, incrList(tail))
+    }
+
+    // Exercise 3_16 with foldR
+    def incrListWithFoldR(xs: List[Int]): List[Int] = {
+      foldRight(xs, Nil: List[Int])( (head, tail) => Cons(head + 1, tail) )
+    }
+
   }
 
 }
