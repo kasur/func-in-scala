@@ -71,4 +71,7 @@ object EntryPoint extends App {
   println(s"incr list (1,0,2,3,4,5,10) by 1 ${List.incrList(List(1,0,2,3,4,5,10))}")
   //Exercise 3_16 with foldR
   println(s"incr list (1,0,2,3,4,5,10) by 1 with foldR ${List.incrListWithFoldR(List(1,0,2,3,4,5,10))}")
+
+  //Exercise 3_17 convert doubles to strings
+  println(s"convert doubles (1.1,0.0,2,3.7,4.1,5.1,10.111) to strings with foldR ${List.toStrings(List(1.1,0.0,2,3.7,4.1,5.1,10.111))}")
 }

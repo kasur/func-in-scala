@@ -212,6 +212,11 @@ package object datastructures {
       foldRight(xs, Nil: List[Int])( (head, tail) => Cons(head + 1, tail) )
     }
 
+    // Exercise 3_17 convert doubles to strings
+    def toStrings(xs: List[Double]): List[String] = {
+      foldRight(xs, Nil: List[String]) { (h,t) => Cons(h.toString, t)}
+    }
+
   }
 
 }
