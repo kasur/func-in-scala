@@ -1,5 +1,6 @@
 import scala.annotation.{tailrec, switch}
 import scala.collection.immutable
+import scala.collection.mutable.ListBuffer
 
 /**
  * @author erusak.
@@ -234,6 +235,17 @@ package object datastructures {
       }
     }
 
+    // Exercise 3_20 implement flatMap
+    def flatMap[A,B](xs: List[A])(f: A => List[B]): List[B] = {
+      foldRight(xs, Nil: List[B]) {
+        (as: A, t: List[B]) => appendFR(f(as), t)
+      }
+    }
+
+    // Exercise 3_20 implement flatMap using map and concat
+    def flatMap_1[A,B](xs: List[A])(f: A => List[B]): List[B] = {
+      concat(map(xs)(f))
+    }
 
   }
 
