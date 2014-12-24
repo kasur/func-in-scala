@@ -247,6 +247,11 @@ package object datastructures {
       concat(map(xs)(f))
     }
 
+    // Exercise 3_21 use flatMap to implement filter
+    def filter_flatMap[A](xs: List[A])(p: A => Boolean): List[A] = {
+      flatMap_1(xs){ a => if(p(a)) List(a) else Nil }
+    }
+
   }
 
 }

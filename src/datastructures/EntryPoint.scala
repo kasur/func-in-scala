@@ -83,4 +83,7 @@ object EntryPoint extends App {
   // Exercise 3_20 flat map with first naive implementation with foldRight and append
   println(s" (1,3,7,5,11) (i => List(i,i) === (1,1,3,3,7,7,5,5,11,11))  ${List.flatMap(List(1,3,7,5,11))( (i: Int) => List(i,i))}")
 
+  //Exercise 3_21 remove odds using filter implementation with flatMap
+  println(s"remove odds from (1,0,2,3,4,5,10) using flatMap impl ${List.filter_flatMap(List(1,0,2,3,4,5,10)) {(x: Int) => (x & 1) == 0 } }")
+
 }
