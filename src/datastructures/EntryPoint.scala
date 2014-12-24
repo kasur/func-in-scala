@@ -86,4 +86,7 @@ object EntryPoint extends App {
   //Exercise 3_21 remove odds using filter implementation with flatMap
   println(s"remove odds from (1,0,2,3,4,5,10) using flatMap impl ${List.filter_flatMap(List(1,0,2,3,4,5,10)) {(x: Int) => (x & 1) == 0 } }")
 
+  // Exercise 3_22/3_23 zip and generalization of zipWith
+  println(s"${List.zipWith(List(0,1,2,3), List("abcd", "abcd","abcd","abcd"))((index, string) => string charAt index)}")
+
 }

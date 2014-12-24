@@ -252,6 +252,21 @@ package object datastructures {
       flatMap_1(xs){ a => if(p(a)) List(a) else Nil }
     }
 
+    // Exercise 3_22 zip with addition for Int type
+    def zipInts(xs: List[Int], ys: List[Int]): List[Int] = (xs, ys) match {
+      case (Nil, _) => Nil
+      case (_, Nil) => Nil
+      case (Cons(h1,t1), Cons(h2,t2)) => Cons(h1 + h2, zipInts(t1, t2))
+    }
+
+    // Exercise 3_23 generalize zip for any operation
+    def zipWith[A,B,C](xs: List[A], ys: List[B])(f: (A,B) => C ): List[C] = (xs, ys) match {
+      case (Nil, _) => Nil
+      case (_, Nil) => Nil
+      case (Cons(h1, t1), Cons(h2,t2)) => Cons(f(h1,h2), zipWith(t1,t2)(f))
+    }
+
+
   }
 
 }
