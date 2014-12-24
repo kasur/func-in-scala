@@ -220,6 +220,21 @@ package object datastructures {
     // Exercise 3_18 map implementation
     def map[A,B](xs: List[A])(f: A => B): List[B] = foldRight(xs, Nil: List[B]) { (h,t) => Cons(f(h), t) }
 
+    // Exercise 3_19 filter naive implementation
+    def filterNaive[A](xs: List[A])(p: A => Boolean): List[A] = xs match {
+      case Nil => Nil
+      case Cons(h,t) if p(h) => Cons(h, filterNaive(t)(p))
+      case Cons(_, t) => filterNaive(t)(p)
+    }
+
+    // Exercise 3_19 filter implementation with foldR
+    def filter[A](xs: List[A])(p: A => Boolean): List[A] = {
+      foldRight(xs, Nil: List[A]) {
+        (x, ys) => if (p(x)) Cons(x, ys) else ys
+      }
+    }
+
+
   }
 
 }

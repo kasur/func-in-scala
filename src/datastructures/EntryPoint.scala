@@ -74,4 +74,10 @@ object EntryPoint extends App {
 
   //Exercise 3_17 convert doubles to strings
   println(s"convert doubles (1.1,0.0,2,3.7,4.1,5.1,10.111) to strings with foldR ${List.toStrings(List(1.1,0.0,2,3.7,4.1,5.1,10.111))}")
+
+  //Exercise 3_19 remove odds using naive filter implementation
+  println(s"remove odds from (1,0,2,3,4,5,10) ${List.filterNaive(List(1,0,2,3,4,5,10)) {(x: Int) => (x & 1) == 0 } }")
+  //Exercise 3_19 remove odds using filter implementation with foldR
+  println(s"remove odds from (1,0,2,3,4,5,10) ${List.filter(List(1,0,2,3,4,5,10)) {(x: Int) => (x & 1) == 0 } }")
+
 }
