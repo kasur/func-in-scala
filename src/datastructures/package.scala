@@ -1,13 +1,11 @@
-import scala.annotation.{tailrec, switch}
-import scala.collection.immutable
-import scala.collection.mutable.ListBuffer
+import scala.annotation.tailrec
 
 /**
  * @author erusak.
  */
 package object datastructures {
+  // custom list implementation
   sealed trait List[+A]
-
   case object Nil extends List[Nothing]
   case class Cons[+A](head: A, tail: List[A]) extends List[A]
 
@@ -264,6 +262,20 @@ package object datastructures {
       case (Nil, _) => Nil
       case (_, Nil) => Nil
       case (Cons(h1, t1), Cons(h2,t2)) => Cons(f(h1,h2), zipWith(t1,t2)(f))
+    }
+
+    private def startsWith[A](l: List[A], prefix: List[A]): Boolean = (l, prefix) match {
+      case (_, Nil) => true
+      case (Cons(h1, t1), Cons(h2,t2))  if h1 == h2 => startsWith(t1,t2)
+      case _ => false
+    }
+
+    // Exercise 3_24 initial attempt to implement hasSubsequence functionally
+    @tailrec
+    def hasSubsequence[A](l: List[A], sub: List[A]): Boolean = l match {
+      case Nil => false
+      case Cons(h,t) if startsWith(l, sub) => true
+      case Cons(h,t) => hasSubsequence(t, sub)
     }
 
 

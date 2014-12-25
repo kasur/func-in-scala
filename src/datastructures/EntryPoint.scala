@@ -89,4 +89,9 @@ object EntryPoint extends App {
   // Exercise 3_22/3_23 zip and generalization of zipWith
   println(s"${List.zipWith(List(0,1,2,3), List("abcd", "abcd","abcd","abcd"))((index, string) => string charAt index)}")
 
+  // Exercise 3_24 initial attempt to implement find sub
+  println(s" is (3,4) in (1,2,3,4,5,6) ${List.hasSubsequence(List(1,2,3,4,5,6), List(3,4))}")
+  println(s" is (2) in (1,2,3,4,5,6) ${List.hasSubsequence(List(1,2,3,4,5,6), List(2))}")
+  println(s" is (1,3) in (1,2,3,4,5,6) ${List.hasSubsequence(List(1,2,3,4,5,6), List(1,3))}")
+
 }
