@@ -298,6 +298,13 @@ package object datastructures {
       case Branch(l, r) => maximum(l) max maximum(r)
     }
 
+    // Exercise 3_27 - implement tht depth function
+    def depth[A](tree: Tree[A]): Int = {
+      case Leaf(_) => 0
+      case Branch(l,r) => 1 + (depth(l) max depth(r))
+    }
+
+
   }
 
 }
