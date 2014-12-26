@@ -299,7 +299,7 @@ package object datastructures {
     }
 
     // Exercise 3_27 - implement tht depth function
-    def depth[A](tree: Tree[A]): Int = {
+    def depth[A](tree: Tree[A]): Int = tree match {
       case Leaf(_) => 0
       case Branch(l,r) => 1 + (depth(l) max depth(r))
     }
@@ -310,6 +310,20 @@ package object datastructures {
       case Branch(l,r) => Branch(map(l)(f), map(r)(f))
     }
 
+    // Exercise 3_29 - write generic function fold that will cover all aforementioned functions
+    def fold[A,B](tree: Tree[A])(leaf: A => B)(branch: (B,B) => B): B = tree match {
+      case Leaf(v) => leaf(v)
+      case Branch(l,r) => branch(fold(l)(leaf)(branch),fold(r)(leaf)(branch))
+    }
+
+    // Exercise 3_29 - implement size with fold
+    def sizeWithFold[A](tree: Tree[A]): Int = fold(tree)(_ => 1)(1 + _ + _)
+    // Exercise 3_29 - implement maximum with fold
+    def maximumWithFold(tree: Tree[Int]): Int = fold(tree)(v => v)(_ max _)
+    // Exercise 3_29 - implement depth with fold
+    def depthWithFold[A](tree: Tree[A]): Int = fold(tree)(v => 0)((a,b) => 1 + (a max b))
+    // Exercise 3_29 - implement map with fold
+    def mapWithFold[A,B](tree: Tree[A])(f: A => B): Tree[B] = fold(tree)((v: A) => Leaf(f(v)): Tree[B])(Branch(_,_))
   }
 
 }
