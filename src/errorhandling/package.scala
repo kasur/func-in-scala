@@ -82,4 +82,30 @@ package object errorhandling {
     case _ => None
   }
 
+  sealed trait Either[+E, +A] {
+    // Exercise 4_6
+    def map[B](f: A => B): Either[E,B] = this match {
+      case Right(v) => Right(f(v))
+      case left @ Left(_) => left
+    }
+    // Exercise 4_6
+    def flatMap[EE >: E, B](f: A => Either[EE, B]): Either[EE,B] = this match {
+      case Right(v) => f(v)
+      case left @ Left(_) => left
+    }
+    // Exercise 4_6
+    def orElse[EE >: E,AA >: A](a: => Either[EE,AA]): Either[EE,AA] = this match {
+      case right @ Right(v) => right
+      case Left(_) => a
+    }
+    // Exercise 4_6
+    def map2[EE >: E, B, C](bb: Either[EE, B])(f: (A,B) => C): Either[EE, C] = for {
+      a <- this
+      b <- bb
+    } yield f(a,b)
+
+  }
+  case class Left[+E](value: E) extends Either[E, Nothing]
+  case class Right[+A](value: A) extends Either[Nothing, A]
+
 }
