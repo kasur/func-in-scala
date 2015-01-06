@@ -37,4 +37,23 @@ package object errorhandling {
     if (xs.isEmpty) None else Some(xs.sum / xs.length)
   }
 
+  def insuranceRateQuote(age: Int, numberOfSpeedingTickets: Int): Double = 0.123d
+
+  def parseQuote(ageS: String, ticketsS: String): Option[Double] = {
+    val ageO = Try { ageS.toInt }
+    val ticketsO = Try { ticketsS.toInt }
+    map2(ageO, ticketsO)(insuranceRateQuote)
+  }
+
+  def Try[A](arg: => A): Option[A] = {
+    try Some(arg)
+    catch { case ex: Exception => None }
+  }
+
+  // Exercise 4_3
+  def map2[A,B,C](option1: Option[A], option2: Option[B])(f: (A,B) => C): Option[C] = (option1, option2) match {
+    case (Some(v1), Some(v2)) => Some(f(v1,v2))
+    case _ => None
+  }
+
 }
