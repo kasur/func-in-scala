@@ -38,6 +38,16 @@ package object errorhandling {
         (z,optionA) => map2(z, optionA)(_ :: _)
       }
     }
+
+    // Exercise 4_5
+    def traverse[A,B](list: List[A])(f: A => Option[B]): Option[List[B]] = {
+      list.foldRight[Option[List[B]]](Some(Nil): Option[List[B]]) {
+        (a,z) => map2(f(a), z)(_ :: _)
+      }
+    }
+    // Exercise 4_5
+    def sequenceViaTraverse[A](a: List[Option[A]]): Option[List[A]] =
+      traverse(a)(x => x)
   }
 
 
