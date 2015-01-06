@@ -19,4 +19,14 @@ object EntryPoint extends App {
   println(s""" Convert int strings ("1fg", "3") to Double ${parseQuote("1fg", "3")}""")
   println(s""" Convert int strings ("1", "3dddf") to Double ${parseQuote("1", "3dddf")}""")
   println(s""" Convert int strings ("wre", "3sdf") to Double ${parseQuote("wre", "3sdf")}""")
+
+  // Exercise 4_4
+  println(s"From List(Some(1), Some(2), Some(3)) getting Some(List(1,2,3)) ${Option.sequence_rec(List(Some(1), Some(2), Some(3)))}")
+  println(s"From List(Some(1), Some(2), Some(3)) getting Some(List(1,2,3)) ${Option.sequence_fold(List(Some(1), Some(2), Some(3)))}")
+  println(s"From List(Some(1), None, Some(3)) getting None) ${Option.sequence_rec(List(Some(1), None, Some(3)))}")
+  println(s"From List(Some(1), None, Some(3)) getting None) ${Option.sequence_fold(List(Some(1), None, Some(3)))}")
+  println(s"From List(Some(1), Some(2), None) getting None) ${Option.sequence_rec(List(Some(1), Some(2), None))}")
+  println(s"From List(Some(1), Some(2), None) getting None) ${Option.sequence_fold(List(Some(1), Some(2), None))}")
+  println(s"From List(None, None, None) getting None) ${Option.sequence_rec(List(None, None, None))}")
+  println(s"From List(None, None, None) getting None) ${Option.sequence_fold(List(None, None, None))}")
 }

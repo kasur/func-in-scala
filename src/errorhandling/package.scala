@@ -25,6 +25,22 @@ package object errorhandling {
   case class Some[+A](get: A) extends Option[A]
   case object None extends Option[Nothing]
 
+  // companion object for Option
+  object Option {
+    // Exercise 4_4 with recursion
+    def sequence_rec[A](list: List[Option[A]]): Option[List[A]] = list match {
+      case Nil => Some(Nil)
+      case headO :: tail => headO flatMap { head => sequence_rec(tail) map (l => head :: l)}
+    }
+    // Exercise 4_4 with foldLeft and map2
+    def sequence_fold[A](list: List[Option[A]]): Option[List[A]] = {
+      list.foldRight[Option[List[A]]](Some(Nil): Option[List[A]]) {
+        (z,optionA) => map2(z, optionA)(_ :: _)
+      }
+    }
+  }
+
+
   // Exercise 4_2
   def variance(xs: Seq[Double]): Option[Double] = {
     mean(xs) flatMap {
