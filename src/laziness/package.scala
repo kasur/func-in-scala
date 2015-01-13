@@ -28,6 +28,26 @@ package object laziness {
       _toList(this, List.empty).reverse
     }
 
+    // Exercise 5_2
+    def take(n: Int): Stream[A] = this match {
+      case Cons(h,t) if n > 1 => Stream.cons(h(), take(n - 1))
+      case Cons(h,t) if n == 1 => Stream.cons(h(), Stream.empty)
+      case _ => Stream.empty
+    }
+
+    // Exercise 5_3
+    @tailrec
+    final def drop(n: Int): Stream[A] = this match {
+      case Cons(h,t) if n > 0 => t().drop(n - 1)
+      case _ => this
+    }
+
+    // Exercise 5_3
+    def takeWhile(p: A => Boolean): Stream[A] = this match {
+      case Cons(h,t) if p(h()) => Stream.cons(h(), t() takeWhile p)
+      case _ => Stream.empty
+    }
+
 
   }
 
